@@ -1,0 +1,11 @@
+import * as Yup from "yup";
+
+export const signUpSchema = Yup.object({
+  name: Yup.string().min(3).max(25).required("Please enter your name"),
+  userName: Yup.string().min(3).max(25).required("Please enter your display name"),
+  email: Yup.string().email().required("Please enter your email"),
+  password: Yup.string().min(6).required("Please enter your password"),
+  confirm_password: Yup.string()
+    .required("Please enter your Confirm password")
+    .oneOf([Yup.ref("password"), null], "Password does not match"),
+});
